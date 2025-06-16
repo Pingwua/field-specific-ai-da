@@ -8,7 +8,8 @@ import {
   CheckCircle, 
   Spinner, 
   ArrowSquareDown,
-  TrashSimple
+  TrashSimple,
+  CloudArrowUp
 } from '@phosphor-icons/react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
@@ -17,6 +18,7 @@ import { Separator } from '@/components/ui/separator'
 import { Progress } from '@/components/ui/progress'
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { useKV } from '@github/spark/hooks'
+import DeploymentGuide from '@/components/DeploymentGuide'
 
 interface DashboardProps {
   onLogout: () => void
@@ -161,9 +163,10 @@ Consider adding customer demographic information to enrich your dataset.
           transition={{ duration: 0.5 }}
         >
           <Tabs defaultValue="upload" className="space-y-8">
-            <TabsList className="grid w-full max-w-md grid-cols-2">
+            <TabsList className="grid w-full max-w-md grid-cols-3">
               <TabsTrigger value="upload">Upload Data</TabsTrigger>
               <TabsTrigger value="history">Processing History</TabsTrigger>
+              <TabsTrigger value="deploy">Deployment</TabsTrigger>
             </TabsList>
             
             <TabsContent value="upload" className="space-y-6">
@@ -327,6 +330,29 @@ Consider adding customer demographic information to enrich your dataset.
                   )}
                 </CardContent>
               </Card>
+            </TabsContent>
+            
+            <TabsContent value="deploy">
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center">
+                      <CloudArrowUp size={24} className="mr-2" />
+                      Deploy Your Instance
+                    </CardTitle>
+                    <CardDescription>
+                      Follow these instructions to deploy the AI Data Refiner on your own Ubuntu server.
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="mb-4 text-sm text-muted-foreground">
+                      This guide will help you set up and deploy the AI Data Refiner application on your own 
+                      Ubuntu server, making it accessible on the web with proper security configurations.
+                    </p>
+                    <DeploymentGuide />
+                  </CardContent>
+                </Card>
+              </div>
             </TabsContent>
           </Tabs>
         </motion.div>
